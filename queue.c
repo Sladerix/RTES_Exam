@@ -15,7 +15,7 @@ void error(const char* message, const int code){
 }
 
 char* queue_name(const char* name){
-    char* qn_ = malloc(strlen(name) + 1 + 6);  //  Allocate memory
+    char* qn_ = malloc(strlen(name) * 2);  //  Allocate memory
     strcpy(qn_, name);
 
     strcat(qn_, ".queue");

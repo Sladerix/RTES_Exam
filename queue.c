@@ -7,6 +7,10 @@ FILE *fptr;
 
 void error(const char* message, const int code){
     printf("%s\n", message);
+    
+    // Close the file
+    fclose(fptr);
+
     exit(code);
 }
 

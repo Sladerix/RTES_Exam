@@ -86,6 +86,9 @@ int main(int argc, char const *argv[]) {
                     qne[i] = token;
                     token = strtok(NULL, " ");
                 }
+
+                printf("L4\n");
+                
                 //printf("%s.%s\n", qne[0], qne[1]);
 
                 if (qne[1] != NULL) {

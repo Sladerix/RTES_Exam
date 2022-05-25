@@ -15,10 +15,12 @@ void error(const char* message, const int code){
 }
 
 char* queue_name(const char* name){
+    printf("QN1");
     char* qn_ = malloc(strlen(name) * 2);  //  Allocate memory
     strcpy(qn_, name);
-
+    printf("QN2");
     strcat(qn_, ".queue");
+    printf("QN3");
     return qn_;
 }
 

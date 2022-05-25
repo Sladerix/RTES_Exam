@@ -9,7 +9,9 @@ void error(const char* message, const int code){
     printf("%s\n", message);
 
     // Close the file
-    fclose(fptr);
+    if (fptr != NULL) {
+        fclose(fptr);
+    }
 
     exit(code);
 }
@@ -64,7 +66,7 @@ int main(int argc, char const *argv[]) {
         if (remove(queue_name(argv[2])) != 0) error("Error while deleting", 4);
 
     } else if (strcmp(command, "list") == 0) {
-       // Check if all arguments are present
+        // Check if all arguments are present
         if (argc < 2) error("Insufficient arguments", 1);
 
         // Retrive all .queue files
@@ -99,7 +101,9 @@ int main(int argc, char const *argv[]) {
     }
     
     // Close the file
-    fclose(fptr);
+    if (fptr != NULL) {
+        fclose(fptr);
+    }
 
     return 0;
 }

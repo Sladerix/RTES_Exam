@@ -15,12 +15,12 @@ void error(const char* message, const int code){
 }
 
 char* queue_name(const char* name){
-    printf("QN1");
+    printf("QN1\n");
     char* qn_ = malloc(strlen(name) * 2);  //  Allocate memory
     strcpy(qn_, name);
-    printf("QN2");
+    printf("QN2\n");
     strcat(qn_, ".queue");
-    printf("QN3");
+    printf("QN3\n");
     return qn_;
 }
 
@@ -71,10 +71,12 @@ int main(int argc, char const *argv[]) {
         if (argc < 2) error("Insufficient arguments", 1);
 
         // Retrive all .queue files
+        printf("L1\n");
         DIR *d;
         struct dirent *dir;
         d = opendir(".");
         if (d) {
+            printf("L2\n");
             while ((dir = readdir(d)) != NULL) {
                 //printf("%s\n", dir->d_name);
 
@@ -94,6 +96,7 @@ int main(int argc, char const *argv[]) {
                 }
             }
             closedir(d);
+            printf("L3\n");
         }
 
     } else {

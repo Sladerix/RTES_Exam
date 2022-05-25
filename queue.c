@@ -23,7 +23,7 @@ int main(int argc, char const *argv[]) {
     // vector show <file>
     // vector delete <file>
 
-    if (argc < 2) error("Insufficient arguments", 1);
+    if (argc < 2) error("Insufficient arguments.", 1);
 
     const char* command = argv[1];
     if (strcmp(command, "add") == 0) {

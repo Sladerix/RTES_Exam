@@ -15,12 +15,9 @@ void error(const char* message, const int code){
 }
 
 char* queue_name(const char* name){
-    printf("QN1\n");
-    char* qn_ = malloc(strlen(name) * 2);  //  Allocate memory
-    strcpy(qn_, name);
-    printf("QN2\n");
+    //char* qn_ = malloc(strlen(name) * 2);  //  Allocate memory
+    char* qn_ = (char*)name;
     strcat(qn_, ".queue");
-    printf("QN3\n");
     return qn_;
 }
 
@@ -67,16 +64,14 @@ int main(int argc, char const *argv[]) {
         if (remove(queue_name(argv[2])) != 0) error("Error while deleting", 4);
 
     } else if (strcmp(command, "list") == 0) {
-        // Check if all arguments are present
+       /* // Check if all arguments are present
         if (argc < 2) error("Insufficient arguments", 1);
 
         // Retrive all .queue files
-        printf("L1\n");
         DIR *d;
         struct dirent *dir;
         d = opendir(".");
         if (d) {
-            printf("L2\n");
             while ((dir = readdir(d)) != NULL) {
                 //printf("%s\n", dir->d_name);
 
@@ -87,8 +82,6 @@ int main(int argc, char const *argv[]) {
                     token = strtok(NULL, " ");
                 }
 
-                printf("L4\n");
-                
                 //printf("%s.%s\n", qne[0], qne[1]);
 
                 if (qne[1] != NULL) {
@@ -99,8 +92,7 @@ int main(int argc, char const *argv[]) {
                 }
             }
             closedir(d);
-            printf("L3\n");
-        }
+        }*/
 
     } else {
         error("Invalid command", 3);

@@ -7,7 +7,7 @@ FILE *fptr;
 
 void error(const char* message, const int code){
     printf("%s\n", message);
-    
+
     // Close the file
     fclose(fptr);
 
@@ -15,7 +15,7 @@ void error(const char* message, const int code){
 }
 
 char* queue_name(const char* name){
-    char* qn_ = malloc(strlen(name) + 1);  //  Allocate memory
+    char* qn_ = malloc(strlen(name) + 1 + 6);  //  Allocate memory
     strcpy(qn_, name);
 
     strcat(qn_, ".queue");

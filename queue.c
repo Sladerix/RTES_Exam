@@ -29,7 +29,7 @@ void error(const char* message){
 }
 
 void syntax(){
-    printf("ADDING AN ELEMENT TO A QUEUE\n\tqueue add <element> <queue name> (if the queue does not exists it will be created\n\nSHOW A QUEUE\n\tqueue show <queue name>\n\nDELETE A QUEUE\n\tqueue delete <queue name>\n\n");
+    printf("ADDING AN ELEMENT TO A QUEUE\n\tqueue add <element> <queue name> (if the queue does not exists it will be created\n\nSHOW A QUEUE\n\tqueue show <queue name>\n\nDELETE A QUEUE\n\tqueue delete <queue name>\n\nLIST ALL QUEUE\n\tqueue list\n\n");
 }
 
 char* queue_name(const char* name){

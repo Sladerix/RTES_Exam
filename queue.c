@@ -5,7 +5,7 @@
 
 FILE *fptr;
 
-void error(const char* message, const int code){
+/*void error_old(const char* message, const int code){
     printf("%s\n", message);
 
     // Close the file
@@ -14,6 +14,22 @@ void error(const char* message, const int code){
     }
 
     exit(code);
+}*/
+
+void error(const char* message){
+    printf("%s\n", message);
+
+    // Close the file
+    if (fptr != NULL) {
+        fclose(fptr);
+    }
+
+    // exit(code);
+    exit(EXIT_FAILURE);
+}
+
+void syntax(){
+    printf("ADDING AN ELEMENT TO A QUEUE\n\tqueue add <element> <queue name> (if the queue does not exists it will be created\n\nSHOW A QUEUE\n\tqueue show <queue name>\n\nDELETE A QUEUE\n\tqueue delete <queue name>\n\n");
 }
 
 char* queue_name(const char* name){
@@ -23,17 +39,21 @@ char* queue_name(const char* name){
     return qn_;
 }
 
-int main(int argc, char const *argv[]) {   
+int main(int argc, char const *argv[]) {
     // vector add <element> <file>
     // vector show <file>
     // vector delete <file>
 
-    if (argc < 2) error("Insufficient arguments.", 1);
+    if (argc < 2) {
+        // error("Insufficient arguments.", 1);
+        syntax();
+        return EXIT_FAILURE;
+    }
 
     const char* command = argv[1];
     if (strcmp(command, "add") == 0) {
         // Check if all arguments are present
-        if (argc < 4) error("Insufficient arguments", 1);
+        if (argc < 4) error("Insufficient arguments");
 
         // Create the file if does not exists
         fptr = fopen(queue_name(argv[3]), "a");
@@ -43,7 +63,7 @@ int main(int argc, char const *argv[]) {
 
     } else if (strcmp(command, "show") == 0) {
         // Check if all arguments are present
-        if (argc < 3) error("Insufficient arguments", 1);
+        if (argc < 3) error("Insufficient arguments");
 
         // Check if the file exists
         fptr = fopen(queue_name(argv[2]), "r");
@@ -55,19 +75,19 @@ int main(int argc, char const *argv[]) {
             }
 
         } else {
-            error("File does not exists", 2);
+            error("Queue does not exists");
         }
     
     } else if (strcmp(command, "delete") == 0) {
         // Check if all arguments are present
-        if (argc < 3) error("Insufficient arguments", 1);
+        if (argc < 3) error("Insufficient arguments");
 
         // Delete the file
-        if (remove(queue_name(argv[2])) != 0) error("Error while deleting", 4);
+        if (remove(queue_name(argv[2])) != 0) error("Error while deleting");
 
     } else if (strcmp(command, "list") == 0) {
         // Check if all arguments are present
-        if (argc < 2) error("Insufficient arguments", 1);
+        if (argc < 2) error("Insufficient arguments");
 
         // Retrive all .queue files
         DIR *d;
@@ -96,8 +116,11 @@ int main(int argc, char const *argv[]) {
             closedir(d);
         }
 
+    } else if (strcmp(command, "help") == 0) {
+        syntax();
+
     } else {
-        error("Invalid command", 3);
+        error("Invalid command");
     }
     
     // Close the file
@@ -105,5 +128,5 @@ int main(int argc, char const *argv[]) {
         fclose(fptr);
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
